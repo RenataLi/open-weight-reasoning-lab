@@ -1,0 +1,85 @@
+{
+  "schema_version": "1.0.0",
+  "audit_date": "2026-08-06",
+  "status": "passed",
+  "scope": {
+    "search_run_id": "20260806_211000_qwen3-1.7b-stage3-reasoning-contract-search",
+    "confirmation_run_id": "20260806_213800_qwen3-1.7b-stage3-reasoning-contract-confirm",
+    "mode": "read_only_post_run_verification"
+  },
+  "checks": {
+    "selection_lock_marker_and_confirmation_copy_match": true,
+    "selection_lock_sha256": "20b23bc3b08bd19ec948da6384f4309179f2374423a3e7cdb96342d4a9df97bf",
+    "selection_lock_predates_test_start": true,
+    "selection_test_roles_only": true,
+    "search_evaluation_artifacts_checked": 26,
+    "selection_confirmation_id_overlap": 0,
+    "stage2_confirmation_id_overlap": 0,
+    "confirmation_metric_artifacts_checked": 14,
+    "confirmation_metrics_use_locked_hashes_roles_and_counts": true,
+    "raw_prediction_counts_recomputed": true,
+    "reported_counts_match_raw_predictions": true,
+    "locked_sft_adapter_hashes_match": true,
+    "continued_parent_lineage_matches": true,
+    "continued_base_revision_matches": true,
+    "continued_dataset_hash_matches": true,
+    "continued_optimizer_fresh": true,
+    "continued_scheduler_fresh": true,
+    "continued_initial_global_step_zero": true,
+    "continued_final_global_step": 16,
+    "all_readiness_checks_recomputed_pass": true
+  },
+  "raw_recomputed_counts": {
+    "base_synthetic_exact": "509/512",
+    "base_synthetic_strict_correct": "115/512",
+    "sft_synthetic_exact": {
+      "101": "505/512",
+      "202": "502/512",
+      "303": "504/512"
+    },
+    "sft_synthetic_format_valid": {
+      "101": "512/512",
+      "202": "512/512",
+      "303": "512/512"
+    },
+    "base_gsm8k_exact": "780/1191",
+    "sft_gsm8k_exact": {
+      "101": "776/1191",
+      "202": "776/1191",
+      "303": "776/1191"
+    }
+  },
+  "search_artifacts": {
+    "search_protocol.json": "bbde8338923a1af4d6997ff8bf44c9e6c603ffc852445da4bd57402b52b13efb",
+    "selection_result.json": "b36aa9f4ca685a695c3546321fa9525243cf8a9aaba8e771d074356a05fd6af4",
+    "selection_lock.json": "20b23bc3b08bd19ec948da6384f4309179f2374423a3e7cdb96342d4a9df97bf",
+    "frozen_data_manifest.json": "7ded86c34e1c6a8fbe8d9d33cf73413bfb189f807d6ee637f632c05f4d1c3a9e",
+    "mixture_manifests.json": "4c82dfa96cce23ec553c31b1877829fd3b25c260f99238249f8ecb0b8838dde1",
+    "training_summaries.json": "d42ad1cb94fc57d4b902bf492ca14057a97d304eb4866e82c864b4bf56d27600",
+    "synthetic_validation.jsonl": "29b73c443cbc302e1b92d8d4ed8b58b21555498a81ac18f36a8ede04d5bdf8ca",
+    "gsm8k_train_validation.jsonl": "b5b1925c5f0a90a9dda2ca1ec9a9cfb12ca2f6864b62a7742374c79b4c379f85",
+    "synthetic_confirmation.jsonl": "1913068be66d4d27991e79ec2ab89e39e0e613e653bf84c3336659d606c11f0f",
+    "gsm8k_confirmation.jsonl": "a575174cb5d5f9a8adec03319b869ee902a6d44ba77ebc070a212d72ff7a29c9"
+  },
+  "confirmation_artifacts": {
+    "selection_lock.json": "20b23bc3b08bd19ec948da6384f4309179f2374423a3e7cdb96342d4a9df97bf",
+    "seed_results.json": "8328580d2b1d69ac51b6b4cb7acb7ffdf93dbd648d03cef51aedd11381e3c465",
+    "comparisons.json": "66ae8eff0a8ab6f49252fd9ba5fb0266df26ad5009f5185e59203a9c96dba78e",
+    "readiness.json": "4e5c2270e6887c9d3803d237c3e8cb3c458241de82d94ff07c7a5ade1d0f7a74",
+    "report.md": "89836aa1fddc0edde1e5c0fc1ab2d4d246bd463e963d022ca550f97a87270019",
+    "run_manifest.json": "bd6014ad830074b9d8f4dbab50cdc4f9e875ada5ddb97af5e7f29dd929902046",
+    "environment.json": "058314c0ea7ef0e8fb8b5de99a50de9e29d92afcccfb28d9e9e48c2abe8e52bb",
+    "resolved_config.yaml": "ac38ec5c743aa409e0cfa6aabc648c0afc917057fb7da29ccfb78fce30da896b",
+    "SUCCESS": "5e1f8562208322ba8dbd7567515383ac6ebf909de2eca4b674a5bfa781adcae4",
+    "TEST_EVALUATION_STARTED": "fe01a84bd1e5168481ee9536a083cfd5e738cd4b19923946fddc8a1edbaae122"
+  },
+  "implementation_findings": {
+    "historical_artifacts_modified": false,
+    "original_runner_had_incomplete_evidence_hash_coverage": true,
+    "original_runner_did_not_block_repeated_confirmation": true,
+    "original_gate_did_not_recheck_all_provenance_fields": true,
+    "future_runner_hardened_after_audit": true,
+    "numerical_thresholds_changed_after_test": false,
+    "model_outputs_recomputed_after_test": false
+  }
+}

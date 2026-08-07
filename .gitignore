@@ -1,0 +1,54 @@
+.venv/
+.cache/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.test-tmp*/
+
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Local credentials and private material
+.env
+.env.*
+!.env.example
+.secrets/
+credentials*.json
+service-account*.json
+token.json
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Generated datasets, local model cache, and experiment runs
+data/generated/
+data/external/
+runs/
+outputs/
+wandb/
+mlruns/
+**/frozen_data/
+**/predictions*.jsonl
+**/generations*.jsonl
+**/.stage3_confirmation_exposures/
+**/.stage4_final_exposures/
+
+# Model weights and optimizer state
+*.safetensors
+*.ckpt
+*.pt
+*.pth
+*.onnx
+*.log
+
+# Packaging artifacts
+build/
+dist/
+*.egg-info/

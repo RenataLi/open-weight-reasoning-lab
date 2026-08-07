@@ -1,0 +1,58 @@
+project:
+  run_name: qwen3-0.6b-arithmetic-smoke
+
+paths:
+  cache_dir: .cache/huggingface/hub
+  data_dir: data/generated/arithmetic_v1_smoke
+  runs_dir: runs
+
+data:
+  generator_version: "1.0.0"
+  seed: 1729
+  train_size: 64
+  validation_size: 16
+  test_size: 16
+
+model:
+  id: Qwen/Qwen3-0.6B-Base
+  revision: main
+  trust_remote_code: false
+
+quantization:
+  load_in_4bit: true
+  bnb_4bit_quant_type: nf4
+  bnb_4bit_use_double_quant: true
+  bnb_4bit_compute_dtype: bfloat16
+
+lora:
+  r: 8
+  alpha: 16
+  dropout: 0.05
+  bias: none
+  target_modules: all-linear
+  task_type: CAUSAL_LM
+
+training:
+  seed: 42
+  data_seed: 42
+  max_length: 128
+  max_steps: 2
+  num_train_epochs: 1.0
+  per_device_train_batch_size: 4
+  gradient_accumulation_steps: 1
+  learning_rate: 0.0002
+  lr_scheduler_type: cosine
+  warmup_ratio: 0.0
+  weight_decay: 0.01
+  gradient_checkpointing: true
+  logging_steps: 1
+  save_steps: 1
+  save_total_limit: 2
+
+evaluation:
+  split: test
+  max_examples: 16
+  batch_size: 4
+  max_new_tokens: 24
+  bootstrap_samples: 200
+  bootstrap_seed: 31415

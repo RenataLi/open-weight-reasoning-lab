@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+message: "If you use this software in your work, please cite it using these metadata."
+title: "Reasoning Post-Training Lab"
+abstract: >-
+  A reproducible research stack for QLoRA supervised fine-tuning and Direct
+  Preference Optimization of open-weight language models, with deterministic
+  data, matched controls, immutable selection locks, and audit-ready artifacts.
+authors:
+  - name: "RenataLi"
+version: 0.4.1
+date-released: "2026-08-07"
+type: software
+license: Apache-2.0
+repository-code: "https://github.com/RenataLi/open-weight-reasoning-lab"
+url: "https://github.com/RenataLi/open-weight-reasoning-lab"
+keywords:
+  - large language models
+  - reasoning
+  - post-training
+  - supervised fine-tuning
+  - direct preference optimization
+  - QLoRA
+  - reproducible research

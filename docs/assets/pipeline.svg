@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="430" viewBox="0 0 1500 430" role="img" aria-labelledby="title desc">
+  <title id="title">Experiment lifecycle</title>
+  <desc id="desc">Deterministic data flows through QLoRA SFT, locked selection, DPO and matched controls, evaluation, and audit artifacts.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0B1220"/>
+      <stop offset="1" stop-color="#15112B"/>
+    </linearGradient>
+    <linearGradient id="line" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#38BDF8"/>
+      <stop offset="1" stop-color="#C084FC"/>
+    </linearGradient>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0 0L10 5L0 10Z" fill="#818CF8"/>
+    </marker>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#020617" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+
+  <rect width="1500" height="430" rx="24" fill="url(#bg)"/>
+  <text x="64" y="62" fill="#F8FAFC" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="28" font-weight="800">AUDIT-FIRST EXPERIMENT LIFECYCLE</text>
+  <text x="64" y="92" fill="#94A3B8" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="16">Every transition produces versioned, machine-readable evidence.</text>
+
+  <g fill="none" stroke="url(#line)" stroke-width="4" marker-end="url(#arrow)">
+    <path d="M215 218H278"/>
+    <path d="M465 218H528"/>
+    <path d="M715 218H778"/>
+    <path d="M965 218H1028"/>
+    <path d="M1215 218H1278"/>
+  </g>
+
+  <g font-family="Inter,Segoe UI,Arial,sans-serif" filter="url(#shadow)">
+    <g transform="translate(35 148)">
+      <rect width="180" height="140" rx="18" fill="#0F2742" stroke="#38BDF8" stroke-width="1.5"/>
+      <circle cx="90" cy="37" r="17" fill="#38BDF8" fill-opacity="0.16" stroke="#38BDF8"/>
+      <text x="90" y="43" text-anchor="middle" fill="#BAE6FD" font-size="17" font-weight="800">01</text>
+      <text x="90" y="78" text-anchor="middle" fill="#F8FAFC" font-size="17" font-weight="700">Deterministic data</text>
+      <text x="90" y="103" text-anchor="middle" fill="#94A3B8" font-size="13">versioned splits</text>
+      <text x="90" y="123" text-anchor="middle" fill="#94A3B8" font-size="13">semantic deduplication</text>
+    </g>
+
+    <g transform="translate(285 148)">
+      <rect width="180" height="140" rx="18" fill="#162554" stroke="#818CF8" stroke-width="1.5"/>
+      <circle cx="90" cy="37" r="17" fill="#818CF8" fill-opacity="0.16" stroke="#818CF8"/>
+      <text x="90" y="43" text-anchor="middle" fill="#E0E7FF" font-size="17" font-weight="800">02</text>
+      <text x="90" y="78" text-anchor="middle" fill="#F8FAFC" font-size="17" font-weight="700">QLoRA SFT</text>
+      <text x="90" y="103" text-anchor="middle" fill="#A5B4FC" font-size="13">data-mixture search</text>
+      <text x="90" y="123" text-anchor="middle" fill="#A5B4FC" font-size="13">three training seeds</text>
+    </g>
+
+    <g transform="translate(535 148)">
+      <rect width="180" height="140" rx="18" fill="#31205C" stroke="#C084FC" stroke-width="1.5"/>
+      <circle cx="90" cy="37" r="17" fill="#C084FC" fill-opacity="0.16" stroke="#C084FC"/>
+      <text x="90" y="43" text-anchor="middle" fill="#F3E8FF" font-size="17" font-weight="800">03</text>
+      <text x="90" y="78" text-anchor="middle" fill="#F8FAFC" font-size="17" font-weight="700">Immutable lock</text>
+      <text x="90" y="103" text-anchor="middle" fill="#D8B4FE" font-size="13">validation-only ranking</text>
+      <text x="90" y="123" text-anchor="middle" fill="#D8B4FE" font-size="13">SHA-256 anchor</text>
+    </g>
+
+    <g transform="translate(785 148)">
+      <rect width="180" height="140" rx="18" fill="#132B2A" stroke="#2DD4BF" stroke-width="1.5"/>
+      <circle cx="90" cy="37" r="17" fill="#2DD4BF" fill-opacity="0.15" stroke="#2DD4BF"/>
+      <text x="90" y="43" text-anchor="middle" fill="#CCFBF1" font-size="17" font-weight="800">04</text>
+      <text x="90" y="78" text-anchor="middle" fill="#F8FAFC" font-size="17" font-weight="700">DPO + controls</text>
+      <text x="90" y="103" text-anchor="middle" fill="#99F6E4" font-size="13">frozen reference</text>
+      <text x="90" y="123" text-anchor="middle" fill="#99F6E4" font-size="13">matched extra-SFT</text>
+    </g>
+
+    <g transform="translate(1035 148)">
+      <rect width="180" height="140" rx="18" fill="#31200F" stroke="#FBBF24" stroke-width="1.5"/>
+      <circle cx="90" cy="37" r="17" fill="#FBBF24" fill-opacity="0.14" stroke="#FBBF24"/>
+      <text x="90" y="43" text-anchor="middle" fill="#FEF3C7" font-size="17" font-weight="800">05</text>
+      <text x="90" y="78" text-anchor="middle" fill="#F8FAFC" font-size="17" font-weight="700">Paired evaluation</text>
+      <text x="90" y="103" text-anchor="middle" fill="#FDE68A" font-size="13">capability + format</text>
+      <text x="90" y="123" text-anchor="middle" fill="#FDE68A" font-size="13">preference + length</text>
+    </g>
+
+    <g transform="translate(1285 148)">
+      <rect width="180" height="140" rx="18" fill="#2B1726" stroke="#FB7185" stroke-width="1.5"/>
+      <circle cx="90" cy="37" r="17" fill="#FB7185" fill-opacity="0.14" stroke="#FB7185"/>
+      <text x="90" y="43" text-anchor="middle" fill="#FFE4E6" font-size="17" font-weight="800">06</text>
+      <text x="90" y="78" text-anchor="middle" fill="#F8FAFC" font-size="17" font-weight="700">Audit bundle</text>
+      <text x="90" y="103" text-anchor="middle" fill="#FECDD3" font-size="13">manifests + lineage</text>
+      <text x="90" y="123" text-anchor="middle" fill="#FECDD3" font-size="13">source attestation</text>
+    </g>
+  </g>
+
+  <g transform="translate(410 340)" font-family="Inter,Segoe UI,Arial,sans-serif">
+    <rect width="680" height="48" rx="24" fill="#0F172A" stroke="#475569"/>
+    <circle cx="30" cy="24" r="7" fill="#22C55E"/>
+    <text x="52" y="30" fill="#CBD5E1" font-size="15">Exact revisions</text>
+    <circle cx="200" cy="24" r="7" fill="#38BDF8"/>
+    <text x="222" y="30" fill="#CBD5E1" font-size="15">Seeded splits</text>
+    <circle cx="363" cy="24" r="7" fill="#A78BFA"/>
+    <text x="385" y="30" fill="#CBD5E1" font-size="15">Locked gates</text>
+    <circle cx="515" cy="24" r="7" fill="#FBBF24"/>
+    <text x="537" y="30" fill="#CBD5E1" font-size="15">Hash verified</text>
+  </g>
+</svg>

@@ -1,0 +1,58 @@
+project:
+  run_name: qwen3-0.6b-arithmetic-v1
+
+paths:
+  cache_dir: .cache/huggingface/hub
+  data_dir: data/generated/arithmetic_v1
+  runs_dir: runs
+
+data:
+  generator_version: "1.0.0"
+  seed: 1729
+  train_size: 512
+  validation_size: 128
+  test_size: 128
+
+model:
+  id: Qwen/Qwen3-0.6B-Base
+  revision: main
+  trust_remote_code: false
+
+quantization:
+  load_in_4bit: true
+  bnb_4bit_quant_type: nf4
+  bnb_4bit_use_double_quant: true
+  bnb_4bit_compute_dtype: bfloat16
+
+lora:
+  r: 16
+  alpha: 32
+  dropout: 0.05
+  bias: none
+  target_modules: all-linear
+  task_type: CAUSAL_LM
+
+training:
+  seed: 42
+  data_seed: 42
+  max_length: 128
+  max_steps: 40
+  num_train_epochs: 2.0
+  per_device_train_batch_size: 8
+  gradient_accumulation_steps: 2
+  learning_rate: 0.0002
+  lr_scheduler_type: cosine
+  warmup_ratio: 0.03
+  weight_decay: 0.01
+  gradient_checkpointing: true
+  logging_steps: 2
+  save_steps: 10
+  save_total_limit: 2
+
+evaluation:
+  split: test
+  max_examples: 128
+  batch_size: 16
+  max_new_tokens: 24
+  bootstrap_samples: 1000
+  bootstrap_seed: 31415

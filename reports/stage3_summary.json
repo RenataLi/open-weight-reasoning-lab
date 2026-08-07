@@ -1,0 +1,213 @@
+{
+  "schema_version": "1.0.0",
+  "stage": 3,
+  "status": "READY TO BUILD A SCOPED DPO PILOT",
+  "interpretation": "The locked SFT recipe passed a preregistered non-inferiority gate. This is not evidence that DPO improves reasoning.",
+  "provenance": {
+    "model_id": "Qwen/Qwen3-1.7B-Base",
+    "model_revision": "ea980cb0a6c2ae4b936e82123acc929f1cec04c1",
+    "external_dataset": "openai/gsm8k/main",
+    "external_dataset_revision": "740312add88f781978c0658806c59bc2815b9866",
+    "config_sha256": "ebfdb4683c864517fe7f9ad0e214d7fcdafb195b019213d850c48b786ec86689",
+    "selection_lock_sha256": "20b23bc3b08bd19ec948da6384f4309179f2374423a3e7cdb96342d4a9df97bf",
+    "search_run_id": "20260806_211000_qwen3-1.7b-stage3-reasoning-contract-search",
+    "confirmation_run_id": "20260806_213800_qwen3-1.7b-stage3-reasoning-contract-confirm",
+    "selection_locked_at": "2026-08-06T18:36:43.874946+00:00",
+    "test_evaluation_started_at": "2026-08-06T18:37:43.209633+00:00",
+    "test_metrics_used_for_selection": false
+  },
+  "confirmation_data": {
+    "synthetic": {
+      "count": 512,
+      "sha256": "1913068be66d4d27991e79ec2ab89e39e0e613e653bf84c3336659d606c11f0f",
+      "row_id_set_sha256": "123b91822bcbb0be3fcaab10bb7d0eebed1c0954b0f758fd6627053c471f0b53"
+    },
+    "gsm8k": {
+      "count": 1191,
+      "sha256": "a575174cb5d5f9a8adec03319b869ee902a6d44ba77ebc070a212d72ff7a29c9",
+      "row_id_set_sha256": "12a858787fa44a98c7cb6186cd24801c6333a386a576dafe81e843441503cded",
+      "excluded_stage2_test_count": 128
+    },
+    "selection_confirmation_id_overlap": 0,
+    "stage2_confirmation_id_overlap": 0,
+    "exposure_status": "exposed_after_stage3_gate"
+  },
+  "selection": {
+    "candidate_id": "conditioned90_nll_lr5e5",
+    "reasoning_fraction": 0.9,
+    "prompt_conditioning": "contract_conditioned",
+    "synthetic_contract": "reasoning_then_answer",
+    "loss_type": "nll",
+    "learning_rate": 0.00005,
+    "optimizer_steps": 32,
+    "seeds": [101, 202, 303],
+    "adapter_sha256": {
+      "101": "2d21f205d13de9eabd7e3153109ad7f57680dda8dac23d774d4ba8c81cb66a7b",
+      "202": "dd9dea70fe7a45b1c102c113d2661f45f41078c64c5f05d1fcfc5a692fed506a",
+      "303": "ffa4f4095dcfad9e1ac64eda15269c8639cdcae583dad5ae8cf2f9ff98628ec3"
+    },
+    "validation": {
+      "base_synthetic_exact": 0.984375,
+      "candidate_synthetic_exact_mean": 0.96875,
+      "candidate_synthetic_strict_mean": 0.96875,
+      "base_gsm8k_dev_exact": 0.74609375,
+      "candidate_gsm8k_dev_exact_mean": 0.76953125,
+      "worst_seed_retention": -0.015625
+    }
+  },
+  "base_confirmation": {
+    "synthetic": {
+      "answer_exact_match": 0.994140625,
+      "strict_correct_rate": 0.224609375,
+      "format_valid_rate": 0.2265625,
+      "parse_success_rate": 1.0,
+      "hit_max_new_tokens_rate": 0.0,
+      "generated_tokens_mean": 97.376953125
+    },
+    "gsm8k": {
+      "answer_exact_match": 0.654911838790932,
+      "strict_correct_rate": 0.6036943744752309,
+      "format_valid_rate": 0.889168765743073,
+      "parse_success_rate": 1.0,
+      "hit_max_new_tokens_rate": 0.036943744752308987,
+      "generated_tokens_mean": 115.39042821158691
+    }
+  },
+  "seed_confirmation": {
+    "101": {
+      "sft": {
+        "synthetic_exact": 0.986328125,
+        "synthetic_format": 1.0,
+        "gsm8k_exact": 0.6515533165407221,
+        "gsm8k_strict_correct": 0.5986565910999161,
+        "gsm8k_format": 0.8958858102434929,
+        "gsm8k_parse": 1.0,
+        "gsm8k_hit_max_new_tokens": 0.027707808564231738
+      },
+      "continued_sft": {
+        "synthetic_exact": 0.984375,
+        "synthetic_format": 1.0,
+        "gsm8k_exact": 0.6515533165407221,
+        "gsm8k_strict_correct": 0.617968094038623,
+        "gsm8k_format": 0.9219143576826196,
+        "gsm8k_parse": 1.0,
+        "gsm8k_hit_max_new_tokens": 0.02938706968933669
+      }
+    },
+    "202": {
+      "sft": {
+        "synthetic_exact": 0.98046875,
+        "synthetic_format": 1.0,
+        "gsm8k_exact": 0.6515533165407221,
+        "gsm8k_strict_correct": 0.5936188077246012,
+        "gsm8k_format": 0.8858102434928632,
+        "gsm8k_parse": 1.0,
+        "gsm8k_hit_max_new_tokens": 0.02938706968933669
+      },
+      "continued_sft": {
+        "synthetic_exact": 0.984375,
+        "synthetic_format": 1.0,
+        "gsm8k_exact": 0.6633081444164568,
+        "gsm8k_strict_correct": 0.6188077246011755,
+        "gsm8k_format": 0.9051217464315701,
+        "gsm8k_parse": 1.0,
+        "gsm8k_hit_max_new_tokens": 0.0218303946263644
+      }
+    },
+    "303": {
+      "sft": {
+        "synthetic_exact": 0.984375,
+        "synthetic_format": 1.0,
+        "gsm8k_exact": 0.6515533165407221,
+        "gsm8k_strict_correct": 0.5860621326616289,
+        "gsm8k_format": 0.8757346767422334,
+        "gsm8k_parse": 1.0,
+        "gsm8k_hit_max_new_tokens": 0.02434928631402183
+      },
+      "continued_sft": {
+        "synthetic_exact": 0.986328125,
+        "synthetic_format": 1.0,
+        "gsm8k_exact": 0.6582703610411419,
+        "gsm8k_strict_correct": 0.6196473551637279,
+        "gsm8k_format": 0.9160369437447523,
+        "gsm8k_parse": 1.0,
+        "gsm8k_hit_max_new_tokens": 0.02518891687657431
+      }
+    }
+  },
+  "aggregate": {
+    "sft_synthetic_exact": {
+      "mean": 0.9837239583333334,
+      "sample_sd": 0.002983447718070208,
+      "range": 0.005859375,
+      "delta_from_base_mean": -0.010416666666666666
+    },
+    "sft_gsm8k_exact": {
+      "mean": 0.6515533165407221,
+      "sample_sd": 0.0,
+      "range": 0.0,
+      "delta_from_base_mean": -0.003358522250209828
+    },
+    "continued_synthetic_exact": {
+      "mean": 0.9850260416666666,
+      "sample_sd": 0.001127637244510988
+    },
+    "continued_gsm8k_exact": {
+      "mean": 0.6577106073327736,
+      "sample_sd": 0.005897371258243904
+    }
+  },
+  "paired_base_to_sft": {
+    "101": {
+      "synthetic_delta": -0.0078125,
+      "synthetic_95_ci": [-0.017578125, 0.0],
+      "gsm8k_delta": -0.0033585222502099076,
+      "gsm8k_95_ci": [-0.02434928631402183, 0.016792611251049538],
+      "gsm8k_wrong_to_right": 75,
+      "gsm8k_right_to_wrong": 79
+    },
+    "202": {
+      "synthetic_delta": -0.013671875,
+      "synthetic_95_ci": [-0.025390625, -0.001953125],
+      "gsm8k_delta": -0.0033585222502099076,
+      "gsm8k_95_ci": [-0.02434928631402183, 0.017632241813602016],
+      "gsm8k_wrong_to_right": 77,
+      "gsm8k_right_to_wrong": 81
+    },
+    "303": {
+      "synthetic_delta": -0.009765625,
+      "synthetic_95_ci": [-0.021484375, 0.0],
+      "gsm8k_delta": -0.0033585222502099076,
+      "gsm8k_95_ci": [-0.02434928631402183, 0.017632241813602016],
+      "gsm8k_wrong_to_right": 78,
+      "gsm8k_right_to_wrong": 82
+    },
+    "bootstrap_samples": 2000
+  },
+  "continued_sft_control": {
+    "optimizer_steps": 16,
+    "continuation_count": 256,
+    "continuation_sha256": "dcebb4880d3399ec4688f7af9dc26d32b9383cdebc007674dda7be109a29cb4f",
+    "fresh_optimizer": true,
+    "fresh_scheduler": true,
+    "initial_global_step": 0,
+    "resumed_from_checkpoint": false
+  },
+  "readiness_gate": {
+    "passed": true,
+    "all_locked_seeds_completed": true,
+    "selection_lock_predates_test": true,
+    "all_capability_and_format_thresholds_passed": true,
+    "all_paired_uncertainty_thresholds_passed": true,
+    "seed_stability_passed": true
+  },
+  "limitations": [
+    "The synthetic confirmation set has a ceiling effect: Base solves 509 of 512 tasks.",
+    "All SFT seeds slightly regress synthetic exact match; seed 202's paired interval excludes zero.",
+    "Aggregate GSM8K equality hides substantial example-level churn.",
+    "Three training seeds share the same test examples and are not independent test samples.",
+    "Public benchmark contamination cannot be ruled out.",
+    "The experiment is example- and step-matched, not token- or compute-matched.",
+    "Confirmation data is exposed and cannot be used for DPO tuning."
+  ]
+}

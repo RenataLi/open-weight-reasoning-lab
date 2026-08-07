@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="420" viewBox="0 0 1400 420" role="img" aria-labelledby="title desc">
+  <title id="title">Reasoning Post-Training Lab</title>
+  <desc id="desc">Audit-first QLoRA SFT and DPO research for open-weight language models.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#081225"/>
+      <stop offset="0.52" stop-color="#111B3C"/>
+      <stop offset="1" stop-color="#251343"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#38BDF8"/>
+      <stop offset="0.5" stop-color="#818CF8"/>
+      <stop offset="1" stop-color="#C084FC"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#38BDF8" stop-opacity="0.3"/>
+      <stop offset="1" stop-color="#38BDF8" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="36" height="36" patternUnits="userSpaceOnUse">
+      <path d="M36 0H0V36" fill="none" stroke="#94A3B8" stroke-opacity="0.08"/>
+    </pattern>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#020617" flood-opacity="0.45"/>
+    </filter>
+  </defs>
+
+  <rect width="1400" height="420" rx="28" fill="url(#bg)"/>
+  <rect width="1400" height="420" rx="28" fill="url(#grid)"/>
+  <circle cx="1140" cy="90" r="260" fill="url(#glow)"/>
+  <circle cx="170" cy="430" r="250" fill="#A855F7" opacity="0.08"/>
+
+  <g transform="translate(72 62)">
+    <rect x="0" y="0" width="215" height="34" rx="17" fill="#38BDF8" fill-opacity="0.12" stroke="#38BDF8" stroke-opacity="0.45"/>
+    <circle cx="19" cy="17" r="5" fill="#38BDF8"/>
+    <text x="34" y="22" fill="#BAE6FD" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="14" font-weight="700" letter-spacing="1.3">OPEN-WEIGHT RESEARCH</text>
+
+    <text x="0" y="102" fill="#F8FAFC" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="58" font-weight="800" letter-spacing="-1.8">Reasoning Post-Training Lab</text>
+    <rect x="0" y="125" width="780" height="5" rx="2.5" fill="url(#accent)"/>
+    <text x="0" y="172" fill="#CBD5E1" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="23">Reproducible QLoRA SFT and DPO for Qwen3-1.7B</text>
+    <text x="0" y="207" fill="#94A3B8" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="18">Deterministic data · matched controls · immutable locks · audit-ready artifacts</text>
+  </g>
+
+  <g transform="translate(72 310)" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="15" font-weight="700" filter="url(#shadow)">
+    <g>
+      <rect width="160" height="48" rx="14" fill="#0F2742" stroke="#38BDF8" stroke-opacity="0.5"/>
+      <text x="80" y="30" text-anchor="middle" fill="#E0F2FE">NF4 QLoRA</text>
+    </g>
+    <g transform="translate(178 0)">
+      <rect width="160" height="48" rx="14" fill="#172554" stroke="#818CF8" stroke-opacity="0.6"/>
+      <text x="80" y="30" text-anchor="middle" fill="#E0E7FF">Multi-seed SFT</text>
+    </g>
+    <g transform="translate(356 0)">
+      <rect width="160" height="48" rx="14" fill="#2E1065" stroke="#C084FC" stroke-opacity="0.6"/>
+      <text x="80" y="30" text-anchor="middle" fill="#F3E8FF">DPO</text>
+    </g>
+    <g transform="translate(534 0)">
+      <rect width="190" height="48" rx="14" fill="#132B2A" stroke="#2DD4BF" stroke-opacity="0.55"/>
+      <text x="95" y="30" text-anchor="middle" fill="#CCFBF1">Matched controls</text>
+    </g>
+    <g transform="translate(742 0)">
+      <rect width="190" height="48" rx="14" fill="#31200F" stroke="#FBBF24" stroke-opacity="0.55"/>
+      <text x="95" y="30" text-anchor="middle" fill="#FEF3C7">SHA-256 lineage</text>
+    </g>
+    <g transform="translate(950 0)">
+      <rect width="190" height="48" rx="14" fill="#2B1726" stroke="#FB7185" stroke-opacity="0.55"/>
+      <text x="95" y="30" text-anchor="middle" fill="#FFE4E6">87 tests</text>
+    </g>
+  </g>
+</svg>

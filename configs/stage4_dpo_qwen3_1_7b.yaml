@@ -1,0 +1,196 @@
+project:
+  run_name: qwen3-1.7b-stage4-dpo-pilot
+
+paths:
+  cache_dir: .cache/huggingface/hub
+  dataset_cache_dir: .cache/huggingface/datasets
+  data_dir: data/generated/arithmetic_v2
+  external_data_dir: data/external/gsm8k
+  svamp_source: data/external/svamp/source/689d7ccac74b9983a2ac7cc3b264f441b99e7c53/SVAMP.json
+  runs_dir: runs
+
+data:
+  generator_version: "2.0.0"
+  seed: 1729
+  train_size: 1024
+  validation_size: 128
+  test_size: 128
+  continuation_size: 512
+
+model:
+  id: Qwen/Qwen3-1.7B-Base
+  revision: ea980cb0a6c2ae4b936e82123acc929f1cec04c1
+  trust_remote_code: false
+
+quantization:
+  load_in_4bit: true
+  bnb_4bit_quant_type: nf4
+  bnb_4bit_use_double_quant: true
+  bnb_4bit_compute_dtype: bfloat16
+
+lora:
+  r: 16
+  alpha: 32
+  dropout: 0.05
+  bias: none
+  target_modules: all-linear
+  task_type: CAUSAL_LM
+
+training:
+  seed: 404
+  data_seed: 404
+  max_length: 384
+  max_steps: 16
+  num_train_epochs: 1.0
+  per_device_train_batch_size: 8
+  gradient_accumulation_steps: 4
+  learning_rate: 0.00001
+  lr_scheduler_type: linear
+  warmup_ratio: 0.0625
+  weight_decay: 0.0
+  gradient_checkpointing: true
+  logging_steps: 2
+  save_steps: 16
+  save_total_limit: 1
+
+continuation:
+  seed: 404
+  data_seed: 404
+  max_length: 384
+  max_steps: 16
+  num_train_epochs: 1.0
+  per_device_train_batch_size: 8
+  gradient_accumulation_steps: 4
+  learning_rate: 0.00001
+  lr_scheduler_type: linear
+  warmup_ratio: 0.0625
+  weight_decay: 0.0
+  gradient_checkpointing: true
+  logging_steps: 2
+  save_steps: 16
+  save_total_limit: 1
+  save_strategy: "no"
+  loss_type: nll
+
+evaluation:
+  split: stage4
+  max_examples: 800
+  batch_size: 64
+  max_prompt_tokens: 256
+  max_new_tokens: 256
+  load_in_4bit: false
+  stop_strings: []
+  bootstrap_samples: 5000
+  bootstrap_seed: 424242
+  max_hit_max_new_tokens_rate: 0.05
+
+stage4:
+  protocol_id: stage4_dpo_feasibility_v2_1
+  data_version: stage4_reasoning_v2.0.0
+  data_seed: 20260808
+  development_iteration: 2
+  predecessor_search: runs/20260807_071800_qwen3-1.7b-stage4-dpo-pilot-v2-search
+  predecessor_search_outcome_sha256: aedc3275b8ddcbce9ec3ba996f95acd09fb919ab8cd7b685cb5791d18923cb1c
+  adaptation_note: >-
+    The v2 development search produced preference accuracy above 0.93 but failed
+    format, strict-correctness, and logic-family retention gates. Iteration v2.1
+    disables stochastic dropout for DPO and matched controls, lowers the DPO
+    learning rate, and preregisters one chosen-NLL-anchored candidate.
+  source_stage3_search: runs/20260806_211000_qwen3-1.7b-stage3-reasoning-contract-search
+  source_stage3_integrity_report: reports/stage3_integrity_audit.json
+  source_stage3_lock_sha256: 20b23bc3b08bd19ec948da6384f4309179f2374423a3e7cdb96342d4a9df97bf
+  parent_selection_rule: minimum_seed_from_locked_selected_candidate
+  parent_seed: 101
+  parent_adapter: runs/20260806_211000_qwen3-1.7b-stage3-reasoning-contract-search/candidates/conditioned90_nll_lr5e5/seed_101/sft/final_adapter
+  parent_adapter_sha256: 2d21f205d13de9eabd7e3153109ad7f57680dda8dac23d774d4ba8c81cb66a7b
+  primary_benefit_endpoint: synthetic
+  preference_train_size: 512
+  preference_validation_size: 128
+  preference_confirmation_size: 128
+  synthetic_validation_size: 384
+  synthetic_confirmation_size: 512
+  svamp_validation_size: 199
+  svamp_forced_validation_seed: 20260807
+  svamp_development_quarantine_size: 800
+  synthetic_batch_size: 64
+  svamp_batch_size: 32
+  dpo_training:
+    seed: 404
+    data_seed: 404
+    max_length: 384
+    max_steps: 16
+    num_train_epochs: 1.0
+    per_device_train_batch_size: 4
+    gradient_accumulation_steps: 8
+    per_device_eval_batch_size: 8
+    preference_eval_batch_size: 16
+    learning_rate: 0.00001
+    beta: 0.1
+    lr_scheduler_type: linear
+    warmup_steps: 1
+    weight_decay: 0.0
+    max_grad_norm: 1.0
+    gradient_checkpointing: true
+    logging_steps: 2
+    precompute_ref_log_probs: true
+    precompute_ref_batch_size: 8
+    disable_dropout: true
+  candidates:
+    - id: dpo_sigmoid_lr2e6
+      loss_type: sigmoid
+      beta: 0.1
+      learning_rate: 0.000002
+      max_steps: 16
+      seed: 404
+      data_seed: 404
+    - id: dpo_sigmoid_lr4e6
+      loss_type: sigmoid
+      beta: 0.1
+      learning_rate: 0.000004
+      max_steps: 16
+      seed: 404
+      data_seed: 404
+    - id: dpo_sigmoid_nll_a025_lr4e6
+      loss_type: sigmoid
+      auxiliary_loss_type: sft
+      loss_weights: [1.0, 0.25]
+      beta: 0.1
+      learning_rate: 0.000004
+      max_steps: 16
+      seed: 404
+      data_seed: 404
+  sft_controls:
+    - id: extra_sft_update_matched
+      max_steps: 16
+    - id: extra_sft_token_proxy
+      max_steps: 32
+  selection_policy:
+    max_synthetic_regression: 0.02
+    max_external_regression: 0.03
+    max_family_regression: 0.05
+    min_preference_accuracy: 0.60
+    min_synthetic_format_valid_rate: 0.80
+    min_external_format_valid_rate: 0.15
+    max_synthetic_format_regression: 0.03
+    max_external_format_regression: 0.03
+    max_synthetic_strict_regression: 0.03
+    max_external_strict_regression: 0.03
+    min_parse_success_rate: 0.99
+    max_synthetic_token_limit_rate: 0.05
+    max_external_token_limit_rate: 0.10
+    min_length_ratio: 0.85
+    max_length_ratio: 1.15
+  confirmation_policy:
+    max_synthetic_regression: 0.02
+    max_synthetic_ci_regression: 0.05
+    max_family_regression: 0.05
+    min_preference_accuracy: 0.60
+    min_preference_accuracy_advantage_vs_control: 0.02
+    min_synthetic_format_valid_rate: 0.80
+    max_synthetic_format_regression: 0.03
+    max_synthetic_strict_regression: 0.03
+    min_parse_success_rate: 0.99
+    max_synthetic_token_limit_rate: 0.05
+    min_length_ratio: 0.85
+    max_length_ratio: 1.15
+    objective_benefit_delta: 0.02

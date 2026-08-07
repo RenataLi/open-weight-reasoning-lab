@@ -1,0 +1,164 @@
+project:
+  run_name: qwen3-1.7b-stage3-reasoning-contract
+
+paths:
+  cache_dir: .cache/huggingface/hub
+  dataset_cache_dir: .cache/huggingface/datasets
+  data_dir: data/generated/arithmetic_v2
+  external_data_dir: data/external/gsm8k
+  runs_dir: runs
+
+data:
+  generator_version: "2.0.0"
+  seed: 1729
+  train_size: 1024
+  validation_size: 128
+  test_size: 128
+  continuation_size: 256
+
+model:
+  id: Qwen/Qwen3-1.7B-Base
+  revision: ea980cb0a6c2ae4b936e82123acc929f1cec04c1
+  trust_remote_code: false
+
+quantization:
+  load_in_4bit: true
+  bnb_4bit_quant_type: nf4
+  bnb_4bit_use_double_quant: true
+  bnb_4bit_compute_dtype: bfloat16
+
+lora:
+  r: 16
+  alpha: 32
+  dropout: 0.05
+  bias: none
+  target_modules: all-linear
+  task_type: CAUSAL_LM
+
+training:
+  seed: 101
+  data_seed: 101
+  max_length: 128
+  max_steps: 32
+  num_train_epochs: 2.0
+  per_device_train_batch_size: 8
+  gradient_accumulation_steps: 2
+  learning_rate: 0.00005
+  lr_scheduler_type: cosine
+  warmup_ratio: 0.03
+  weight_decay: 0.01
+  gradient_checkpointing: true
+  logging_steps: 4
+  save_steps: 32
+  save_total_limit: 1
+
+continuation:
+  seed: 10101
+  data_seed: 10101
+  max_length: 128
+  max_steps: 16
+  num_train_epochs: 2.0
+  per_device_train_batch_size: 8
+  gradient_accumulation_steps: 2
+  learning_rate: 0.00002
+  lr_scheduler_type: cosine
+  warmup_ratio: 0.0
+  weight_decay: 0.01
+  gradient_checkpointing: true
+  logging_steps: 2
+  save_steps: 16
+  save_total_limit: 1
+
+evaluation:
+  split: validation
+  max_examples: 512
+  batch_size: 128
+  max_prompt_tokens: 128
+  max_new_tokens: 512
+  load_in_4bit: false
+  bootstrap_samples: 2000
+  bootstrap_seed: 31415
+  max_hit_max_new_tokens_rate: 0.05
+
+external_evaluation:
+  dataset_id: openai/gsm8k
+  subset: main
+  revision: 740312add88f781978c0658806c59bc2815b9866
+  subset_seed: 20260806
+  fewshot_count: 5
+  parser_validation_size: 64
+  test_size: 128
+  batch_size: 16
+  max_prompt_tokens: 4096
+  max_new_tokens: 256
+  load_in_4bit: false
+  stop_strings:
+    - "\nQuestion:"
+  bootstrap_samples: 2000
+  bootstrap_seed: 27182
+  max_hit_max_new_tokens_rate: 0.10
+  expected_files:
+    train:
+      bytes: 2306545
+      sha256: ea82612ea9582142387730c793eb67d3b12849002bc0b7fa6f8efafa7351419d
+    test:
+      bytes: 419088
+      sha256: ee7b8da9e381df27b9e3f7758a159ab2bdaa4dbaa910546cbbc47e0cb44e4f59
+
+stage3:
+  protocol_id: stage3_reasoning_then_answer_v3
+  source_stage2_run: runs/20260806_190817_291848_qwen3-1.7b-stage2-pilot-final
+  mixture_seed: 20260807
+  synthetic_contract: reasoning_then_answer
+  synthetic_dev_size: 512
+  synthetic_confirm_size: 512
+  external_dev_size: 256
+  external_confirm_size: 1191
+  synthetic_batch_size: 128
+  external_batch_size: 32
+  search_seeds: [101, 202, 303]
+  candidates:
+    - id: shared75_nll_lr5e5
+      reasoning_fraction: 0.75
+      prompt_conditioning: shared_flexible
+      loss_type: nll
+      learning_rate: 0.00005
+      max_steps: 32
+    - id: conditioned75_nll_lr5e5
+      reasoning_fraction: 0.75
+      prompt_conditioning: contract_conditioned
+      loss_type: nll
+      learning_rate: 0.00005
+      max_steps: 32
+    - id: conditioned90_nll_lr5e5
+      reasoning_fraction: 0.9
+      prompt_conditioning: contract_conditioned
+      loss_type: nll
+      learning_rate: 0.00005
+      max_steps: 32
+    - id: shared75_nll_lr2e5
+      reasoning_fraction: 0.75
+      prompt_conditioning: shared_flexible
+      loss_type: nll
+      learning_rate: 0.00002
+      max_steps: 32
+  selection_policy:
+    max_synthetic_regression: 0.05
+    max_external_regression: 0.05
+    max_group_regression: 0.075
+    min_format_valid_rate: 0.95
+    min_parse_success_rate: 0.99
+    max_synthetic_token_limit_rate: 0.05
+    max_external_token_limit_rate: 0.10
+  confirmation_policy:
+    max_synthetic_regression: 0.05
+    max_external_regression: 0.03
+    max_synthetic_ci_regression: 0.05
+    max_external_ci_regression: 0.03
+    max_continued_regression: 0.05
+    min_format_valid_rate: 0.95
+    min_parse_success_rate: 0.99
+    max_synthetic_token_limit_rate: 0.05
+    max_external_token_limit_rate: 0.10
+    max_synthetic_seed_range: 0.03
+    max_external_seed_range: 0.04

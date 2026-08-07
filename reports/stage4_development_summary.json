@@ -1,0 +1,104 @@
+{
+  "schema_version": "1.0.0",
+  "stage": 4,
+  "protocol_id": "stage4_dpo_feasibility_v2_1",
+  "status": "locked_development_selection",
+  "scope": "aggregate development metrics",
+  "provenance": {
+    "model_id": "Qwen/Qwen3-1.7B-Base",
+    "model_revision": "ea980cb0a6c2ae4b936e82123acc929f1cec04c1",
+    "selection_lock_sha256": "527bf0fd55bd449b6a8105586bd6bdafe8c001b03db9d05fe7e185621272dcee",
+    "test_metrics_used_for_selection": false,
+    "evidence_hashes_verified": 59,
+    "implementation_files_verified": 40
+  },
+  "data": {
+    "preference_train": 512,
+    "preference_validation": 128,
+    "synthetic_validation": 384,
+    "svamp_development_validation": 199,
+    "synthetic_families": 7,
+    "selection_role_overlap": 0,
+    "prior_reserved_prompt_overlap": 0
+  },
+  "selection": {
+    "candidate_id": "dpo_sigmoid_lr2e6",
+    "control_id": "extra_sft_token_proxy",
+    "ranking_priority": "worst_task_retention",
+    "candidate_development_checks_passed": 15,
+    "candidate_development_checks_total": 15,
+    "eligible_dpo_candidates": 3,
+    "evaluated_dpo_candidates": 3
+  },
+  "training": {
+    "loss_type": "sigmoid",
+    "beta": 0.1,
+    "learning_rate": 0.000002,
+    "optimizer_steps": 16,
+    "seed": 404,
+    "data_seed": 404,
+    "trainable_parameters": 17432576,
+    "effective_dropout_probability": 0.0,
+    "peak_gpu_memory_gib": 6.908,
+    "runtime_seconds": 36.98
+  },
+  "metrics": {
+    "parent": {
+      "synthetic_exact": 0.6979166666666666,
+      "synthetic_format": 0.8463541666666666,
+      "synthetic_strict": 0.6458333333333334,
+      "synthetic_parse": 1.0,
+      "svamp_exact": 0.7537688442211056,
+      "svamp_strict": 0.18090452261306533,
+      "svamp_parse": 1.0
+    },
+    "selected_dpo": {
+      "synthetic_exact": 0.703125,
+      "synthetic_format": 0.8359375,
+      "synthetic_strict": 0.6458333333333334,
+      "synthetic_parse": 1.0,
+      "synthetic_length_ratio_vs_parent": 0.9961477987421384,
+      "svamp_exact": 0.7638190954773869,
+      "svamp_strict": 0.20603015075376885,
+      "svamp_parse": 1.0,
+      "svamp_length_ratio_vs_parent": 1.0250246143747948,
+      "preference_accuracy": 0.640625,
+      "preference_reward_margin_mean": 0.009199205200502547,
+      "worst_family_delta": -0.024390243902439046
+    },
+    "selected_extra_sft_control": {
+      "synthetic_exact": 0.7291666666666666,
+      "synthetic_format": 0.890625,
+      "synthetic_strict": 0.7135416666666666,
+      "synthetic_parse": 1.0,
+      "svamp_exact": 0.7738693467336684,
+      "svamp_strict": 0.3768844221105528,
+      "svamp_parse": 1.0,
+      "preference_accuracy": 0.3828125,
+      "preference_reward_margin_mean": -0.009873006146335683
+    }
+  },
+  "candidate_frontier": [
+    {
+      "id": "dpo_sigmoid_lr2e6",
+      "preference_accuracy": 0.640625,
+      "worst_family_delta": -0.024390243902439046,
+      "eligible": true,
+      "selected": true
+    },
+    {
+      "id": "dpo_sigmoid_lr4e6",
+      "preference_accuracy": 0.8046875,
+      "worst_family_delta": -0.032786885245901676,
+      "eligible": true,
+      "selected": false
+    },
+    {
+      "id": "dpo_sigmoid_nll_a025_lr4e6",
+      "preference_accuracy": 0.796875,
+      "worst_family_delta": -0.032786885245901676,
+      "eligible": true,
+      "selected": false
+    }
+  ]
+}
